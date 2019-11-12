@@ -8,6 +8,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.TopicPartition;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -39,8 +40,8 @@ public class AvroConsumerExample {
 
         // Assign to specific topic and partition, subscribe could be used here to subscribe to all topic.
         
-        consumer.assign(Arrays.asList(new TopicPartition("Testtopic1", 0)));
-        consumer.seekToBeginning(Arrays.asList(new TopicPartition("Testtopic1", 0)));
+        consumer.assign(Arrays.asList(new TopicPartition("test", 0)));
+        consumer.seekToBeginning(Arrays.asList(new TopicPartition("test", 0)));
 
         processRecords(consumer);
     }
@@ -62,7 +63,7 @@ public class AvroConsumerExample {
                 totalMessageCount--;
             }
 
-            System.out.println("lastOffset read: " + lastOffset);
+            System.out.println("LastOffset read: " + lastOffset);
             consumer.commitSync();
             Thread.sleep(500);
             
@@ -90,10 +91,10 @@ public class AvroConsumerExample {
     public static void getCountKafkaTopic()
     {
     	
-    	String topic ="Testtopic1";
+    	String topic ="test";
     	
     	KafkaConsumer<String, byte[]> consumer = createConsumer();
-    	List<TopicPartition> partitions = consumer.partitionsFor(topic).stream()
+    	Collection<TopicPartition> partitions = consumer.partitionsFor(topic).stream()
     	        .map(p -> new TopicPartition(topic, p.partition()))
     	        .collect(Collectors.toList());
     	    consumer.assign(partitions); 

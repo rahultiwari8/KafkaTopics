@@ -5,7 +5,7 @@ public class SimpleProducer {
   
    public static void main(String[] args) throws Exception{
            
-      String topicName = "AutoCreate";
+      String topicName = "test";
 	  String key = "Key1";
 	  String value = "{\"hi ho\":\"hello\"}";
       

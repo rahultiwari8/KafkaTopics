@@ -46,7 +46,7 @@ public class AvroProducerExample {
     }
 
     private static void sendRecords(Producer<String, byte[]> producer) throws IOException, InterruptedException {
-        String topic = "Testtopic1";
+        String topic = "test";
         int partition = 0;
         int j=0;
         while (j<10) {
